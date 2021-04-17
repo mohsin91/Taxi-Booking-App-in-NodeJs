@@ -1,0 +1,76 @@
+var mongoose = require("mongoose");
+Schema = mongoose.Schema;
+
+var GROUP_MESSAGE_SCHEMA = {};
+GROUP_MESSAGE_SCHEMA.MESSAGE = {
+	type:String,//0-text,1-image,2-video,3-audio,4-link,5,contact,6-document if(group) create a new group,7-add a new group memeber,8-change a group image,9-new message ,11-change as admin,12-exit group,13- change timer,14 - location,20 -document if(group),21-missed call
+	id:Number,
+	groupId:{ type: Schema.ObjectId, ref: 'group',required: true},
+	doc_id:String,
+	filesize:Number,
+	user_name:String,
+	from: { type: Schema.ObjectId, ref: 'users',required: true},
+	createdTo: { type: Schema.ObjectId, ref: 'users'	},
+	createdToLists:[{type: Schema.ObjectId, ref: 'user' }],
+	invite_link:String,
+	make_admin_status:String,
+	createdTomsisdn:String,
+	thumbnail_data:String,
+	original_filename:String,
+	numPages:Number,
+	thumbnail_data:String,
+	contact_name:String,
+	duration:String,
+	width:Number,
+	height:Number,
+	group_type:String,
+	link_details:{
+		title:String,
+		description:String,
+		thumbnail_data:String,
+		image:String,
+		url:String,
+		host:String,
+		invite_type:String,
+		invite_link:String,
+	},
+	replyId:{ type: Schema.ObjectId, ref: 'group_message'	},
+	contact_details:{
+		phone_number :[],
+		email : [],
+		address:[],
+		im:[],
+		organisation:[],
+		name:[],
+	},
+	to:[{
+		id:{ type: Schema.ObjectId, ref: 'users',required: true},
+		star:{	type: Number, default: 0},
+		removed:{	type: Number, default: 0},
+		cleared:{	type: Number, default: 0},
+		status:String, // 0 - didnt get the message, 1 -  got the message , 2 - seen the message
+		time_to_deliever:Number,
+		is_deleted_everyone:{type: Number, default: 0},
+		time_to_seen:Number}],
+	timestamp:Number,
+	payload:String,
+	is_tag_applied:{type: Number, default: 0},
+	prev_thumbnail:String,
+	thumbnail:String,
+	name:String,
+	prev_name:String,
+	description_name:String,
+	prev_description_name:String,
+	edit_group_info:String,
+	send_group_messages:String,
+	width:Number,
+	height:Number,
+	tagged_users:[],
+	is_deleted_everyone:{type: Number, default: 0},
+	audio_type:Number,
+	is_deleted:{type: Number, default: 0},
+	contact_id: { type: Schema.ObjectId, ref: 'users' },
+	contact_profile:String
+	
+};
+module.exports = GROUP_MESSAGE_SCHEMA;

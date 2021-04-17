@@ -1,0 +1,11 @@
+{
+    "port": "3003",
+    "mongodb": {
+        "host": "localhost",
+        "port": "27017",
+        "database": "iclickitalkcom"
+    },
+    "directory": {
+        "users": "./uploads/images/users/"
+    }
+}
